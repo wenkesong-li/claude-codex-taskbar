@@ -36,7 +36,7 @@ and run `claude-codex-taskbar.exe`.
   (`settings.rs` + `settings/`: palette, model, layout, Direct2D painter).
 - `src/packaged.rs` (MSIX detection and startup task) and `packaging/` (MSIX manifest and
   `build-msix.ps1`, #5).
-- `src/config.rs`, `src/i18n.rs` (English, pt-BR and Spanish), `src/autostart.rs`.
+- `src/config.rs`, `src/i18n.rs` (English, pt-BR, Spanish and Simplified Chinese), `src/autostart.rs`.
 - `site/` — the GitHub Pages website (https://chiarorosa.github.io/claude-codex-taskbar/):
   HTML fragments in `site/pages/`, `layout.html`, `style.css`, and `build.py` (Python standard
   library only; tests in `test_build.py`). Facts on the site must match the README.
@@ -59,7 +59,7 @@ and run `claude-codex-taskbar.exe`.
   user clicks *Check for updates* (#117; never automatic). No telemetry.
 - Never show `0%` for an error; error states render `—`.
 - All user-facing text goes through `i18n::t` with a string for every language (English, pt-BR,
-  Spanish).
+  Spanish, Simplified Chinese).
 - UI changes follow [DESIGN.md](DESIGN.md): real controls with our paint, Windows theme and
   accent, documented APIs only.
 - Keep the binary small and dependencies minimal; discuss new crates in an issue first.

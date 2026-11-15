@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, feat/zh-cn]
   pull_request:
 
 permissions:
@@ -26,6 +26,12 @@ jobs:
         run: cargo test --locked
       - name: Build release
         run: cargo build --release --locked
+      - name: Upload portable executable
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: cct-zh-cn-windows-x64
+          path: target/release/claude-codex-taskbar.exe
+          if-no-files-found: error
       - name: Check binary size
         shell: pwsh
         run: |

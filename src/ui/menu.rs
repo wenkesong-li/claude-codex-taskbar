@@ -106,7 +106,7 @@ pub fn escape(text: &str) -> String {
 mod tests {
     use super::*;
 
-    const LANGS: [Lang; 3] = Lang::ALL;
+    const LANGS: [Lang; Lang::ALL.len()] = Lang::ALL;
 
     /// The access key of a menu text: the character after a single `&`.
     fn access_key(text: &str) -> Option<char> {
