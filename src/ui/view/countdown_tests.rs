@@ -72,6 +72,7 @@ fn retained_tip_expected(lang: Lang, notice: Key) -> String {
         Lang::En => ("wk", "in 1h 12m", "in 7d"),
         Lang::PtBr => ("sem", "em 1h 12min", "em 7d"),
         Lang::Es => ("sem", "en 1h 12min", "en 7d"),
+        Lang::ZhCn => ("周", "1 小时 12 分钟后重置", "7 天后重置"),
     };
     let notice = if notice == Key::StaleReasonFmt {
         fmt2(t(lang, notice), "offline", &at)
@@ -124,6 +125,7 @@ fn tooltip_keeps_absolute_times_and_adds_both_provider_countdowns() {
         (Lang::En, "wk", "in 1h 12m", "in 7d"),
         (Lang::PtBr, "sem", "em 1h 12min", "em 7d"),
         (Lang::Es, "sem", "en 1h 12min", "en 7d"),
+        (Lang::ZhCn, "周", "1 小时 12 分钟后重置", "7 天后重置"),
     ] {
         let tip = countdown_tip(lang, &status, NOW);
         let absolute5 = fmt(t(lang, Key::ResetsFmt), &format_local_hhmm(NOW + 4320));
