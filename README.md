@@ -97,7 +97,7 @@ Choose the side in *Settings → General → Strip position* (*Left* or *Right*;
 Releases are not code-signed yet, so SmartScreen may warn: **More info → Run anyway**. Verify the file against `SHA256SUMS.txt` or its signed build provenance:
 
 ```powershell
-gh attestation verify claude-codex-taskbar.exe --repo chiarorosa/claude-codex-taskbar
+gh attestation verify claude-codex-taskbar.exe --repo wenkesong-li/claude-codex-taskbar
 ```
 
 Build from source: `cargo build --release` (see [CONTRIBUTING.md](CONTRIBUTING.md)).

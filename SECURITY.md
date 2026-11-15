@@ -15,7 +15,7 @@ the release workflow for `claude-codex-taskbar.exe` and the `.zip`. Check that a
 from this repository with the [GitHub CLI](https://cli.github.com/):
 
 ```powershell
-gh attestation verify claude-codex-taskbar.exe --repo chiarorosa/claude-codex-taskbar
+gh attestation verify claude-codex-taskbar.exe --repo wenkesong-li/claude-codex-taskbar
 ```
 
 `SHA256SUMS.txt` is still attached to each release for a quick integrity check.

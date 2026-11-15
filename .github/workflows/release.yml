@@ -115,10 +115,14 @@ jobs:
           pattern: release-*
           path: dist
           merge-multiple: true
-      - name: Publish Windows and macOS downloads together
+      - name: Publish
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
           name: CCT ${{ github.ref_name }} — 中文版 / macOS preview
           body_path: RELEASE_NOTES.md
-          prerelease: false
-          files: dist/*
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          files: |
+            dist/*.zip
+            dist/*.dmg
+            dist/claude-codex-taskbar.exe
+            dist/SHA256SUMS*.txt

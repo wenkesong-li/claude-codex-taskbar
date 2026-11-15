@@ -297,7 +297,7 @@ fn ci_cannot_mint_signing_tokens() {
 fn docs_explain_attestation_verification() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
     let cmd =
-        "gh attestation verify claude-codex-taskbar.exe --repo chiarorosa/claude-codex-taskbar";
+        "gh attestation verify claude-codex-taskbar.exe --repo wenkesong-li/claude-codex-taskbar";
     for doc in ["README.md", "SECURITY.md"] {
         let text = fs::read_to_string(root.join(doc)).unwrap();
         assert!(text.contains(cmd), "{doc} must show `{cmd}`");
