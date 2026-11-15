@@ -302,7 +302,12 @@ pub fn t(lang: Lang, key: Key) -> &'static str {
 fn strings(key: Key) -> [&'static str; Lang::ALL.len()] {
     match key {
         Key::MenuSettings => ["Settings", "Configurações", "Configuración", "设置"],
-        Key::MenuRefresh => ["Refresh now", "Atualizar agora", "Actualizar ahora", "立即刷新"],
+        Key::MenuRefresh => [
+            "Refresh now",
+            "Atualizar agora",
+            "Actualizar ahora",
+            "立即刷新",
+        ],
         Key::MenuCopyUsage => ["Copy usage", "Copiar uso", "Copiar uso", "复制用量"],
         Key::MenuAutostart => [
             "Start with Windows",
@@ -422,12 +427,7 @@ fn strings(key: Key) -> [&'static str; Lang::ALL.len()] {
             "Buscar actualizaciones",
             "检查更新",
         ],
-        Key::UpdateChecking => [
-            "Checking…",
-            "Verificando…",
-            "Comprobando…",
-            "正在检查…",
-        ],
+        Key::UpdateChecking => ["Checking…", "Verificando…", "Comprobando…", "正在检查…"],
         Key::UpdateUpToDate => [
             "You have the latest version",
             "Você está na versão mais recente",
