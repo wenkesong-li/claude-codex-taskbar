@@ -9,9 +9,9 @@ use crate::limits::http::get_json;
 use std::cmp::Ordering;
 
 pub const LATEST_API: &str =
-    "https://api.github.com/repos/chiarorosa/claude-codex-taskbar/releases/latest";
+    "https://api.github.com/repos/wenkesong-li/claude-codex-taskbar/releases/latest";
 /// Opened in the browser when a newer version is out.
-pub const RELEASE_PAGE: &str = "https://github.com/chiarorosa/claude-codex-taskbar/releases/latest";
+pub const RELEASE_PAGE: &str = "https://github.com/wenkesong-li/claude-codex-taskbar/releases/latest";
 pub const CURRENT: &str = env!("CARGO_PKG_VERSION");
 
 #[derive(Clone, Debug, PartialEq, Eq)]

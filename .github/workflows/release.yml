@@ -20,6 +20,10 @@ jobs:
       - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # v1
         with:
           toolchain: 1.99.1
+      - name: Format
+        run: cargo fmt --check
+      - name: Clippy
+        run: cargo clippy --locked --all-targets -- -D warnings
       - name: Test
         run: cargo test --locked
       - name: Build
@@ -40,7 +44,7 @@ jobs:
       - name: Package
         shell: pwsh
         run: |
-          $name = "claude-codex-taskbar-${{ github.ref_name }}-x64"
+          $name = "claude-codex-taskbar-${{ github.ref_name }}-windows-x64"
           New-Item -ItemType Directory -Force dist, $name | Out-Null
           Copy-Item target/release/claude-codex-taskbar.exe dist/claude-codex-taskbar.exe
           Copy-Item target/release/claude-codex-taskbar.exe, README.md, LICENSE, CHANGELOG.md $name
@@ -82,18 +86,39 @@ jobs:
           path: dist-msix/*.msix
           if-no-files-found: error
           retention-days: 90
-      - name: Publish
+      - name: Upload Windows release files
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-windows
+          path: dist/*
+          if-no-files-found: error
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Test, build and package universal macOS app
+        run: bash macos/build.sh
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-macos
+          path: dist-macos/*
+          if-no-files-found: error
+
+  publish:
+    needs: [release, macos]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: release-*
+          path: dist
+          merge-multiple: true
+      - name: Publish Windows and macOS downloads together
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
-          generate_release_notes: true
-          prerelease: ${{ contains(github.ref_name, '-') }}
-          files: |
-            dist/*.zip
-            dist/claude-codex-taskbar.exe
-            dist/SHA256SUMS.txt
-      - name: Refresh the website
-        # Releases made with GITHUB_TOKEN do not trigger other workflows, so start it by hand.
-        if: ${{ !contains(github.ref_name, '-') }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run pages.yml --ref main --repo ${{ github.repository }}
+          name: CCT ${{ github.ref_name }} — 中文版 / macOS preview
+          body_path: RELEASE_NOTES.md
+          prerelease: false
+          files: dist/*

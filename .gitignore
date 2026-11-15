@@ -40,3 +40,4 @@ $RECYCLE.BIN/
 
 # MSIX build output (packaging/build-msix.ps1)
 /dist-msix/
+/dist-macos/

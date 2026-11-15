@@ -1,7 +1,7 @@
 # CCT: Claude Code & Codex account switcher and usage monitor
 
 [![CI](https://github.com/chiarorosa/claude-codex-taskbar/actions/workflows/ci.yml/badge.svg)](https://github.com/chiarorosa/claude-codex-taskbar/actions/workflows/ci.yml)
-[![Latest release](https://img.shields.io/github/v/release/chiarorosa/claude-codex-taskbar)](https://github.com/chiarorosa/claude-codex-taskbar/releases/latest)
+[![Latest release](https://img.shields.io/github/v/release/chiarorosa/claude-codex-taskbar)](https://github.com/wenkesong-li/claude-codex-taskbar/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/chiarorosa/claude-codex-taskbar/total)](https://github.com/chiarorosa/claude-codex-taskbar/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Windows 10 | 11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?logo=windows11)
@@ -12,7 +12,7 @@
 
 **Personal account or work account? Always know which Claude Code / Codex account you are on, how much of its quota is left, and switch between your accounts in three clicks, right from your taskbar.**
 
-**Website:** [chiarorosa.github.io/claude-codex-taskbar](https://chiarorosa.github.io/claude-codex-taskbar/) · **Why I built it:** [the story on DEV](https://dev.to/chiarorosa/personal-account-or-work-account-a-610-kb-windows-taskbar-widget-for-claude-code-and-codex-2dl8) · **Platforms:** Windows 11 / 10 today · macOS coming soon · Linux not yet
+**This fork:** [Windows and macOS downloads](https://github.com/wenkesong-li/claude-codex-taskbar/releases) · **Platforms:** Windows 11 / 10 and macOS 13+ menu-bar preview (Apple Silicon and Intel). See [macOS installation and limitations](macos/README.md). The upstream Windows project is by chiarorosa; this fork adds Chinese translations and the macOS implementation.
 
 **Windows version:**
 
@@ -86,7 +86,7 @@ Each entry shows the plan and the usage last seen on that account. `⚠ login ex
 
 ## Install
 
-1. Download `claude-codex-taskbar-<version>-x64.zip` from the [latest release](https://github.com/chiarorosa/claude-codex-taskbar/releases/latest) and extract it.
+1. Download `claude-codex-taskbar-<version>-x64.zip` from the [latest release](https://github.com/wenkesong-li/claude-codex-taskbar/releases/latest) and extract it.
 2. Put `claude-codex-taskbar.exe` somewhere permanent (for example `%LOCALAPPDATA%\Programs\claude-codex-taskbar\`) and run it. No administrator rights needed.
 3. Right-click the strip → **Start with Windows**.
 
@@ -117,7 +117,7 @@ Build from source: `cargo build --release` (see [CONTRIBUTING.md](CONTRIBUTING.m
 
 - **Codex account switcher**, with the same rules: paid plans, manual only, encrypted locally.
 - Active account name in the tooltip, for Claude and Codex.
-- **macOS** menu-bar version: coming soon.
+- **macOS** menu-bar preview: available in this fork; see [supported features](macos/README.md).
 - **Linux**: not yet.
 
 Not planned: its own login screen, usage history.
@@ -148,7 +148,7 @@ Under 16 MB of memory and near-zero CPU, with no disk or network activity betwee
 ![Task Manager row for claude-codex-taskbar: 0% CPU, 14.5 MB memory](docs/screenshot-pc-usage.png)
 
 ### Does it work on macOS, Linux or Windows 10?
-CCT started on Windows 11, where no tool like it existed. A macOS version is coming soon; Linux is not supported yet. On Windows 10 the strip sits next to the system tray when the left corner has no room; you can pick the side in Settings ([#10](https://github.com/chiarorosa/claude-codex-taskbar/issues/10)).
+CCT started on Windows 11, where no tool like it existed. This fork includes a macOS 13+ menu-bar preview; see [macOS details](macos/README.md). Linux is not supported. On Windows 10 the strip sits next to the system tray when the left corner has no room; you can pick the side in Settings ([#10](https://github.com/chiarorosa/claude-codex-taskbar/issues/10)).
 
 ## Disclaimer
 
