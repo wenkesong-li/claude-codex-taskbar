@@ -57,6 +57,7 @@ final class NoRedirects: NSObject, URLSessionTaskDelegate {
         guard let window else { return "—" }
         return String(format: "%.0f%%", remaining ? 100 - window.used : window.used)
     }
+    @discardableResult
     private func add(_ menu: NSMenu, _ title: String, _ action: Selector? = nil, key: String = "") -> NSMenuItem {
         let item = NSMenuItem(title: title, action: action, keyEquivalent: key)
         item.target = self
@@ -150,8 +151,12 @@ final class NoRedirects: NSObject, URLSessionTaskDelegate {
     }
 }
 
-let app = NSApplication.shared
-let delegate = AppDelegate()
-app.setActivationPolicy(.accessory)
-app.delegate = delegate
-app.run()
+// Executable entry runs on the main thread; keep AppKit and the delegate on its actor.
+MainActor.assumeIsolated {
+    let app = NSApplication.shared
+    let delegate = AppDelegate()
+    app.setActivationPolicy(.accessory)
+    app.delegate = delegate
+    app.run()
+    withExtendedLifetime(delegate) {}
+}
