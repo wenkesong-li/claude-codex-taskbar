@@ -13,7 +13,7 @@ done
 bundle="target/macos/CCT.app"
 mkdir -p "$bundle/Contents/MacOS"
 lipo -create target/macos/cct-arm64 target/macos/cct-x86_64 -output "$bundle/Contents/MacOS/cct"
-lipo -verify_arch arm64 x86_64 "$bundle/Contents/MacOS/cct"
+lipo "$bundle/Contents/MacOS/cct" -verify_arch arm64 x86_64
 cp macos/Info.plist "$bundle/Contents/Info.plist"
 plutil -lint "$bundle/Contents/Info.plist"
 codesign --force --sign - "$bundle"
